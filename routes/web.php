@@ -15,6 +15,8 @@
 //     return view('welcome');
 // });
 
+use Illuminate\Support\Facades\Mail;
+
 Route::view('/', 'index');
 Route::get('/create', 'StudentController@create');
 Route::post('/store', 'StudentController@store');
@@ -42,3 +44,6 @@ Route::name('teachers.')->group(function() {
 
 });
 
+// Route::get('sendemail', function () {
+    
+//     });

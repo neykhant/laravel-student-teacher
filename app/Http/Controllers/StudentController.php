@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreStudentRequest;
 use App\student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
@@ -54,6 +55,17 @@ class StudentController extends Controller
             'class_teacher'=>$request->classteacher,
 
         ]);
+
+        //new student email
+        $data = array(
+            'name' => $request->studentname,
+            );
+            
+            Mail::send('emails.welcome', $data, function ($message) {
+            $message->from('kokhant228abc@gmail.com', 'Khant Maw Hein');
+            $message->to('khantmaw48@gmail.com')->subject('There is a new Student here!');
+            });
+            // return "Your email has been sent successfully";
 
         return redirect('/index')->with('sms', 'Student has been Add!...');
     }
